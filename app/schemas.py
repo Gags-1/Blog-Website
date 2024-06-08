@@ -13,7 +13,7 @@ class PostCreate(PostBase):
     pass
 class UserReponse(BaseModel):
     id: int
-    email: EmailStr
+    
     created_at: datetime
 
     class config:
@@ -35,7 +35,7 @@ class PostOut(BaseModel):
 
 
 class UserLogin(BaseModel):
-    email: EmailStr
+    username: str
     password: str   
 
 class Token(BaseModel):

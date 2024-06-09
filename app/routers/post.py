@@ -31,3 +31,4 @@ def get_posts(
         
     results = query.limit(limit).offset(skip).all()
     return results
+

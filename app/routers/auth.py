@@ -14,7 +14,7 @@ def login(user_credentials: OAuth2PasswordRequestForm=Depends(), db: Session=Dep
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"User with email {user_credentials.username} not found")
 
-    if not utils.verify(user_credentials.password, user.password):
+    if not utils.verify(user_credentials.password, user.hashed_password):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Incorrect password")
     
     access_token=oauth2.create_access_token(data = {"user_id": user.id}) #creating access token

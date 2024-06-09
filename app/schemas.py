@@ -1,9 +1,7 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, EmailStr, Field
-from typing import Optional
-#This is BaseModel used to set parameters in the posts that the user will create
+
 class PostBase(BaseModel):
     title: str
     content: str
@@ -11,26 +9,22 @@ class PostBase(BaseModel):
 
 class PostCreate(PostBase):
     pass
-class UserReponse(BaseModel):
-    id: int
-    
-    created_at: datetime
 
-    class config:
-        orm_mode = True
-
-
-#for reposne to user
 class Post(PostBase):
     id: int
     created_at: datetime
-    class config:
+    
+    class Config:
         orm_mode = True
 
 class PostOut(BaseModel):
-    Post: Post
-
-    class config:
+    id: int
+    title: str
+    content: str
+    published: bool
+    created_at: datetime
+    
+    class Config:
         orm_mode = True
 
 

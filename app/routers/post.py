@@ -4,6 +4,7 @@ from typing import Optional
 from ..database import get_db
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
+from .. import schemas
 
 
 router = APIRouter(
@@ -11,7 +12,7 @@ router = APIRouter(
     tags=["Posts"]
 )
 
-@router.get("/")
+@router.get("/",response_model=list[schemas.PostOut])
 def get_posts(
     db: Session = Depends(get_db),
     limit: int = 10,
